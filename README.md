@@ -1,27 +1,36 @@
-# Kompass
+# Neopixel am @boardname@
 
-## ~avatar avatar
+## ~avatar
 
-Willkommen! Dieses geführte Tutorial zeigt dir, wie du ein Skript programmierst das anzeigt, in welche Himmelsrichtung dein @boardname@ zeigt. Fangen wir an!
+Willkommen! Dieses geführte Tutorial zeigt dir, wie du ein Skript programmierst mit dem Du RGB-LEDs (Neopixel) mit Deinem @boardname@ ansteuern kannst.
 
-## Schritt 1
+Fangen wir an!
 
-Erstelle eine Schleife, die kontinuierlich den Messwert des Kompasses auswertet.
+## Neopixel anschließen @fullscreen
+Neopixel lassen sich ganz leicht am @boardname@ anschließen:
+Verbinde DIN mit P0, +5V mit dem + des @boardname@ und GND mit - des @boardname@
+Gut geeignet sind RGB-Streifen die es sehr günstig gibt. Mehr als 8 LEDs sollten es ohne zusätzliche Stromversorgung nicht sein.
+![Neopixelbild](https://github.com/MKleinSB/Tut1/blob/master/compass.png)
 
+## Neopixelstreifen einer Variable zuweisen @fullscreen
+
+Dieses Projekt verwendet die **neopixel** Erweiterung. Du musst sie zu deinem Projekt hinzufügen.
+* klicke auf das Zahnrad-Menü und wähle **Erweiterungen**
+* wähle die **neopixel** Erweiterung
+
+Nun musst Du dem @boardname@ sagen wie dein Neopixelstreifen heißen soll und waus wie vielen LEDs er besteht.
+Wir gehen mal von 8 LEDs aus die an P0 angeschlossen sind.
 ```blocks
-basic.forever(() => {
-
-})
+let strip = neopixel.create(DigitalPin.P0, 8, NeoPixelMode.RGB)
 ```
 
-## Schritt 2 @fullscreen
+## Helligkeit der LEDs festlegen @fullscreen
 
-Speichere den ausgelesenen Wert des @boardname@ in einer Variablen mit dem Namen `gradzahl`.
+Dein @boardname@ kann die Helligkeit der LEDs mit dem Befehl <0>||strip.setBrightness||</0> festlegen.
 
 ```blocks
-basic.forever(() => {
-    let gradzahl = input.compassHeading()
-})
+let strip = neopixel.create(DigitalPin.P0, 8, NeoPixelMode.RGB)
+strip.setBrightness(150)
 ```
 
 ## Schritt 3 @fullscreen
@@ -98,3 +107,6 @@ basic.forever(() => {
 
 Lade jetzt das Programm auf deinen @boardname@ und teste ob es so funktioniert wie gewünscht!
 
+```package
+neopixel=github:microsoft/pxt-neopixel#v0.6.12
+```
